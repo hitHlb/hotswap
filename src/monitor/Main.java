@@ -29,9 +29,8 @@ public class Main {
 		for(String mainClass : loadConfig.getAgentConfigKeys()){
 			if(!pattern.matcher(mainClass).matches())
 				continue;
-			mainClass = mainClass.substring(PERFIX.length());
 			for(VirtualMachineDescriptor vmd : vmds){
-				if(vmd.displayName().equals(mainClass)){
+				if(vmd.displayName().equals(mainClass.substring(PERFIX.length()))){
 					try {
 						VirtualMachine vm = VirtualMachine.attach(vmd);
 						//加载Agent
